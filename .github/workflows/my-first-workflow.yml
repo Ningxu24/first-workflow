@@ -1,0 +1,29 @@
+# Name of the workflow (appears in GitHub Actions UI)
+name: My First Workflow
+
+# Events that trigger this workflow
+on:
+  push:
+    branches:
+      - main      # Only trigger when pushing to the 'main' branch
+
+# Define jobs for the workflow
+jobs:
+  build:
+    runs-on: ubuntu-latest   # The OS for the runner (GitHub-hosted Ubuntu machine)
+
+    # Steps to run inside the job
+    steps:
+      # Step 1: Check out your repository code
+      - name: Check out repository
+        uses: actions/checkout@v3   # Uses the official GitHub action to clone your repo
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4   # Official action to install Python
+        with:
+          python-version: '3.11'    # Specify Python version 3.11
+
+      # Step 3: Run a Python command
+      - name: Print a message
+        run: python -c "print('Hello, world!')"   # Executes Python directly on the runner
