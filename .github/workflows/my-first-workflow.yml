@@ -37,16 +37,7 @@ jobs:
 
       - name: Run Python tests
         run: |
-          python -c """
-import unittest
-
-class SimpleTest(unittest.TestCase):
-    def test_always_passes(self):
-        self.assertTrue(True)
-
-if __name__ == '__main__':
-    unittest.main()
-"""
+          python -c $'import unittest\n\nclass SimpleTest(unittest.TestCase):\n    def test_always_passes(self):\n        self.assertTrue(True)\n\nif __name__ == \'__main__\':\n    unittest.main()'
 
   # Job 2: 并行任务 2
   build-and-test-2:
