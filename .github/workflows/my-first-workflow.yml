@@ -22,7 +22,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4   # Official action to install Python
         with:
-          python-version: '3.11'    # Specify Python version 3.11
+           python-version: '3.x'
 
       # Step 3: Run a Python command
       - name: Print a message
