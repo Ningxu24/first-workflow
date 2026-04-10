@@ -1,11 +1,15 @@
 # Name of the workflow (appears in GitHub Actions UI)
 name: My First Workflow
 
-# Events that trigger this workflow
+# Triggers for the workflow
 on:
+  # 1. 手动触发
+  workflow_dispatch:
+
+  # 2. 推送触发 (保留你原来的配置)
   push:
     branches:
-      - main      # Only trigger when pushing to the 'main' branch
+      - main
 
 # Define jobs for the workflow
 jobs:
