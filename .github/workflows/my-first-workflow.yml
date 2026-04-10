@@ -12,6 +12,9 @@ on:
       - main
   schedule:
     - cron: '15 6 * * 1-5'
+  pull_request:
+    branches:
+      - main
 
 # Define jobs for the workflow
 jobs:
