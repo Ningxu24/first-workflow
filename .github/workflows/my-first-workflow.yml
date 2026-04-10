@@ -35,9 +35,9 @@ jobs:
         if: github.ref != 'refs/heads/main'
         run: echo "This is not the main branch."
 
-      # 修正点：使用标准的 python 命令，并确保缩进正确
       - name: Run Python tests
-        run: python -c "
+        run: |
+          python -c "
 import unittest
 
 class SimpleTest(unittest.TestCase):
