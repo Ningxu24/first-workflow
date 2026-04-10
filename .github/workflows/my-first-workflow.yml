@@ -15,6 +15,81 @@ on:
   pull_request:
     branches:
       - main
+# Jobs defined in this workflow
+jobs:
+  # First build-and-test job
+  build-and-test-1:
+    # Specifies the runner environment
+    runs-on: ubuntu-latest
+
+    # Environment variables available to all steps in this job
+    env:
+      DEBUG: false
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up the Python runtime
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      # Step 3: Run only if the branch is main
+      - name: Print a message for main branch
+        if: github.ref == 'refs/heads/main'
+        run: echo "This is the main branch."
+
+      # Step 4: Run only if the branch is not main
+      - name: Print a message for non-main branches
+        if: github.ref != 'refs/heads/main'
+        run: echo "This is not the main branch."
+
+      # Step 5: Run a self-contained Python test script
+      - name: Run Python tests
+        run: |
+          python <<EOF
+          import unittest
+
+          class SimpleTest(unittest.TestCase):
+              def test_addition(self):
+                  self.assertEqual(1 + 1, 2)
+
+              def test_truth(self):
+                  self.assertTrue(True)
+
+          if __name__ == "__main__":
+              unittest.main()
+          EOF
+
+      # Step 6: Optional debug step controlled by an environment variable
+      - name: Debug message
+        if: env.DEBUG == 'true'
+        run: echo "Debugging is enabled."
+
+  # Second build-and-test job (runs in parallel with the first)
+  build-and-test-2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      # Simple inline Python logic for demonstration purposes
+      - name: Run Python tests
+        run: |
+          python <<EOF
+          print("Running tests in build-and-test-2 job")
+          assert 2 * 2 == 4
+          EOF
+
 
 # Define jobs for the workflow
 jobs:
