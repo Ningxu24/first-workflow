@@ -37,7 +37,7 @@ jobs:
 
       - name: Run Python tests
         run: |
-          python -c "
+          python -c """
 import unittest
 
 class SimpleTest(unittest.TestCase):
@@ -46,7 +46,7 @@ class SimpleTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-"
+"""
 
   # Job 2: 并行任务 2
   build-and-test-2:
