@@ -134,7 +134,7 @@ Optimal subarray = [4, -2, 3, -1, 5]
 | `[-2]` | −2 | base case |
 | `[4, -2]` | 4 | left max |
 | `[3]` | 3 | base case |
-| `[4, -2, 3]` | **5** | crossing: 2+3 |
+| `[4, -2, 3]` | **5** | crossing: left suffix (4−2)=2, right prefix 3 → 2+3=5 |
 | `[-1]` | −1 | base case |
 | `[5]` | 5 | base case |
 | `[-1, 5]` | 5 | right max |
